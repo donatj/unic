@@ -2,11 +2,21 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/seiflotfy/cuckoofilter"
 )
+
+var (
+	iflag = flag.Bool("i", false, "Case insensitive comparison of lines.")
+)
+
+func init() {
+	flag.Parse()
+}
 
 func main() {
 	cf := cuckoofilter.NewDefaultCuckooFilter()
@@ -22,11 +32,16 @@ func main() {
 			os.Exit(2)
 		}
 
-		if !cf.Lookup(text) {
+		cmptxt := text
+		if *iflag {
+			cmptxt = []byte(strings.ToLower(string(text)))
+		}
+
+		if !cf.Lookup(cmptxt) {
 			os.Stdout.Write(text)
 		}
 
-		cf.InsertUnique(text)
+		cf.InsertUnique(cmptxt)
 	}
 
 }
