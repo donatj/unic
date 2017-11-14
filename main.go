@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"io"
 	"os"
 
 	"github.com/seiflotfy/cuckoofilter"
@@ -14,8 +15,11 @@ func main() {
 
 	for {
 		text, err := reader.ReadBytes('\n')
-		if err != nil {
+		if err == io.EOF {
 			break
+		} else if err != nil {
+			os.Stderr.WriteString(err.Error())
+			os.Exit(2)
 		}
 
 		if !cf.Lookup(text) {
