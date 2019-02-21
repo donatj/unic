@@ -17,7 +17,7 @@ Works by using Cuckoo Filters - See: https://github.com/seiflotfy/cuckoofilter
 
 ### Original item order is kept
 
-Given the list `3 1 2 1 2 3`, compare `sort|uniq` 's output
+Given the list `3 1 2 1 2 3`, compare `sort | uniq` 's output
 
 ```bash
 $ echo '3\n1\n2\n1\n2\n3' | sort | uniq
