@@ -24,9 +24,20 @@ func FilterCaseInsensitive(f *Filter) error {
 	return nil
 }
 
+// FilterCapacity sets the cuckoo filter capacity for the Filter's
+// internal cuckoo filters
+func FilterCapacity(capacity uint) FilterOption {
+	return func(f *Filter) error {
+		f.FilterCapacity = capacity
+		return nil
+	}
+}
+
 // NewFilter returns a Filter configured with the given FilterOptions
 func NewFilter(options ...FilterOption) (*Filter, error) {
-	filter := &Filter{}
+	filter := &Filter{
+		FilterCapacity: 1000000,
+	}
 
 	var result *multierror.Error
 
@@ -38,9 +49,9 @@ func NewFilter(options ...FilterOption) (*Filter, error) {
 	return filter, result.ErrorOrNil()
 }
 
-// Exec executes the filter on the given input
-// writing unique output to the unique stream and
-// repeated output to the repeated stream
+// Exec executes the filter on the given input.
+// Writes unique output to the unique stream.
+// Writes repeated output to the repeated stream.
 func (u *Filter) Exec(input io.Reader, unique, repeated io.Writer) error {
 	cf := cuckoo.NewFilter(u.FilterCapacity)
 	cf2 := cuckoo.NewFilter(u.FilterCapacity)
