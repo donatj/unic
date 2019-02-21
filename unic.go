@@ -72,10 +72,16 @@ func (u *Filter) Exec(input io.Reader, unique, repeated io.Writer) error {
 		}
 
 		if !cf.Lookup(cmptxt) {
-			unique.Write(text)
+			_, err := unique.Write(text)
+			if err != nil {
+				return err
+			}
 		} else {
 			if !cf2.Lookup(cmptxt) {
-				repeated.Write(text)
+				_, err := repeated.Write(text)
+				if err != nil {
+					return err
+				}
 			}
 
 			cf2.InsertUnique(cmptxt)
