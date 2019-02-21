@@ -12,7 +12,7 @@ Works by using Cuckoo Filters - See: https://github.com/seiflotfy/cuckoofilter
 
 `sort` by definitions needs to buffer the entire input before it can begin outputing **anything**. This can use a lot of memory and prevents anything from getting output until the initial process completes.
 
-`unic` on the other hand uses probabalistic filters (Cuckoo) to determine if the input has been seen before, and can begin output after the first line of input.
+`unic` uses probabalistic filters (Cuckoo) to determine if the input has been seen before, and can begin output after the first line of input.
 
 ### You don't lose original item order
 
@@ -38,11 +38,15 @@ echo '3\n1\n2\n1\n2\n3' | unic
 
 ### Probabilistic Filtering
 
-As `unic` utilizes Cuckoo Filters
+As `unic` works with Cuckoo Filters, there is a very small probability a line will be wrongly marked duplicate. Lines will **never** be incorrectly marked as unique due to the nature of the filter.
 
-### Not compatbiel with all of `uniq`'s flags
+In cases where a false positive cannot ever be tolerated, `unic` **should not** be used.
 
-As `unic` does not buffer, not all of `uniq`'s flags can be implemented. This is by design however, and in such cases `uniq` should be used.
+### Not compatible with all of `uniq`'s flags
+
+`unic` by nature does not buffer; thus some of `uniq`'s flags cannot be implemented.
+
+In these cases, you should use `uniq`.
 
 ## Installing
 
