@@ -8,13 +8,13 @@ Works by using Cuckoo Filters - See: https://github.com/seiflotfy/cuckoofilter
 
 ## Advantages over `sort | uniq`
 
-### Quicker Output / Lower Memory Footprint
+### Quicker output, lower memory footprint
 
 `sort` by definitions needs to buffer the entire input before it can begin outputing **anything**. This can use a lot of memory and prevents anything from getting output until the initial process completes.
 
 `unic` uses probabalistic filters (Cuckoo) to determine if the input has been seen before, and can begin output after the first line of input.
 
-### You don't lose original item order
+### Item order is kept
 
 Compare `sort|uniq`
 
