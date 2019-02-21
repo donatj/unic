@@ -1,14 +1,14 @@
 darwin64:
-	env GOOS=darwin GOARCH=amd64 go clean -i
-	env GOOS=darwin GOARCH=amd64 go build -o release/darwin64/unic
+	env GOOS=darwin GOARCH=amd64 go clean -i ./cmd/unic
+	env GOOS=darwin GOARCH=amd64 go build -o release/darwin64/unic ./cmd/unic
 
 linux64:
-	env GOOS=linux GOARCH=amd64 go clean -i
-	env GOOS=linux GOARCH=amd64 go build -o release/linux64/unic
+	env GOOS=linux GOARCH=amd64 go clean -i ./cmd/unic
+	env GOOS=linux GOARCH=amd64 go build -o release/linux64/unic ./cmd/unic
 
 freebsd64:
-	env GOOS=freebsd GOARCH=amd64 go clean -i
-	env GOOS=freebsd GOARCH=amd64 go build -o release/freebsd64/unic
+	env GOOS=freebsd GOARCH=amd64 go clean -i ./cmd/unic
+	env GOOS=freebsd GOARCH=amd64 go build -o release/freebsd64/unic ./cmd/unic
 
 build: darwin64 linux64 freebsd64
 
