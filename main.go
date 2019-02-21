@@ -19,7 +19,7 @@ func init() {
 }
 
 func main() {
-	cf := cuckoofilter.NewDefaultCuckooFilter()
+	cf := cuckoo.NewFilter(1000000)
 
 	reader := bufio.NewReader(os.Stdin)
 
