@@ -18,6 +18,12 @@ type Filter struct {
 // FilterOption sets an option of the passed Filter
 type FilterOption func(*Filter) error
 
+// FilterCaseInsensitive configures the Filter to be Case Insensitive
+func FilterCaseInsensitive(f *Filter) error {
+	f.CaseI = true
+	return nil
+}
+
 // NewFilter returns a Filter configured with the given FilterOptions
 func NewFilter(options ...FilterOption) (*Filter, error) {
 	filter := &Filter{}

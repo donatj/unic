@@ -18,7 +18,13 @@ func init() {
 }
 
 func main() {
-	filter, err := unic.NewFilter()
+	options := []unic.FilterOption{}
+
+	if *iflag {
+		options = append(options, unic.FilterCaseInsensitive)
+	}
+
+	filter, err := unic.NewFilter(options...)
 	if err != nil {
 		os.Stderr.WriteString(err.Error() + "\n")
 		os.Exit(2)
