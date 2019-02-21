@@ -15,9 +15,9 @@ Works by using Cuckoo Filters - See: https://github.com/seiflotfy/cuckoofilter
 
 `unic` uses probabalistic filters (Cuckoo) to determine if the input has been seen before, and can begin output after the first line of input.
 
-### Item order is kept
+### Original item order is kept
 
-Compare `sort|uniq`
+Given the list `3 1 2 1 2 3`, compare `sort|uniq` 's output
 
 ```bash
 $ echo '3\n1\n2\n1\n2\n3' | sort | uniq
@@ -26,7 +26,7 @@ $ echo '3\n1\n2\n1\n2\n3' | sort | uniq
 3
 ```
 
-vs. `unic`
+to `unic`
 
 ```bash
 echo '3\n1\n2\n1\n2\n3' | unic
