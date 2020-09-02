@@ -59,11 +59,15 @@ func (u *Filter) Exec(input io.Reader, unique, repeated io.Writer) error {
 	reader := bufio.NewReader(input)
 
 	for {
-		text, err := reader.ReadBytes('\n')
-		if err == io.EOF {
-			return nil
-		} else if err != nil {
-			return err
+		text, readErr := reader.ReadBytes('\n')
+		if readErr == io.EOF {
+			if len(text) == 0 {
+				return nil
+			}
+
+			text = append(text, '\n')
+		} else if readErr != nil {
+			return readErr
 		}
 
 		cmptxt := text
@@ -88,5 +92,9 @@ func (u *Filter) Exec(input io.Reader, unique, repeated io.Writer) error {
 		}
 
 		cf.InsertUnique(cmptxt)
+
+		if readErr == io.EOF {
+			return nil
+		}
 	}
 }
