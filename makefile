@@ -12,8 +12,13 @@ freebsd64:
 
 build: darwin64 linux64 freebsd64
 
+.PHONY: clean
+clean:
+	-rm -rf release
+	mkdir release
+
 .PHONY: release
-release: build
+release: clean build
 	zip release/unic.darwin_amd64.zip release/darwin64/unic
 	tar cJf release/unic.linux_amd64.tar.xz release/linux64/unic
 	tar cJf release/unic.freebsd_amd64.tar.xz release/freebsd64/unic
