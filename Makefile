@@ -1,4 +1,4 @@
-BIN="unic"
+BIN=unic
 USER=$(shell whoami)
 HEAD=$(shell ([ -n "$${CI_TAG}" ] && echo "$$CI_TAG" || exit 1) || git describe --tags 2> /dev/null || git rev-parse --short HEAD)
 STAMP=$(shell date -u '+%Y-%m-%d_%I:%M:%S%p')
