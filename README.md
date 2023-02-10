@@ -55,8 +55,8 @@ In these cases, you should use `uniq`.
 
 See: [releases](https://github.com/donatj/unic/releases)
 
-### Compile
+### From Source
 
 ```bash
-$ go get -u -v github.com/donatj/unic
+$ go install github.com/donatj/unic/cmd/unic@latest
 ```
