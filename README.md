@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/donatj/unic)](https://goreportcard.com/report/github.com/donatj/unic)
 [![GoDoc](https://godoc.org/github.com/donatj/unic?status.svg)](https://godoc.org/github.com/donatj/unic)
 
-Works like UNIX `sort | uniq` except you don't have to call `sort` first.
+Works like UNIX `sort | uniq` to provide global uniques except you don't have to sort first.
 
 Works by using Cuckoo Filters - See: https://github.com/seiflotfy/cuckoofilter
 
