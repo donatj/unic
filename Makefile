@@ -17,9 +17,9 @@ test:
 
 .PHONY: clean
 clean:
-	-rm -f unic
+	-rm -f $(BIN)
 	-rm -rf release dist
-	go clean -i ./cmd/unic
+	go clean -i ./cmd/$(BIN)
 
 .PHONY: install
 install:
