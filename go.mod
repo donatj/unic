@@ -1,6 +1,6 @@
 module github.com/donatj/unic
 
-go 1.21
+go 1.26
 
 require (
 	github.com/hashicorp/go-multierror v1.1.1
