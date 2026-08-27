@@ -2,10 +2,10 @@ package unic
 
 import (
 	"bufio"
+	"errors"
 	"io"
 	"strings"
 
-	multierror "github.com/hashicorp/go-multierror"
 	cuckoo "github.com/seiflotfy/cuckoofilter"
 )
 
@@ -39,14 +39,15 @@ func NewFilter(options ...FilterOption) (*Filter, error) {
 		FilterCapacity: 1000000,
 	}
 
-	var result *multierror.Error
+	var errs []error
 
 	for _, option := range options {
-		err := option(filter)
-		result = multierror.Append(result, err)
+		if err := option(filter); err != nil {
+			errs = append(errs, err)
+		}
 	}
 
-	return filter, result.ErrorOrNil()
+	return filter, errors.Join(errs...)
 }
 
 // Exec executes the filter on the given input.
